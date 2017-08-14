@@ -1,0 +1,73 @@
+注：add commit针对的对象都是"修改"
+1 先创建一个目录，再git init使其成为git可以管理的仓库其中会有一个.git的目录
+2 使用git add ‘文件名’ 添加文件
+3 使用git commit -m “相关改动信息(自己随便写)”将文件提交给仓库
+4 更新文件时还是2，3步，add多次commit一次就行
+5 git status查看当前仓库的状态，git diff “文件名”显示修改的内容(显示提交之前的修改，提交了就看不到了)
+6 使用git log可以显示修改的历史记录以便查看，git log --pretty=oneline只显示关键信息
+7 使用git reset “commit id”可以回退或者返回某个修改版本
+8 git reset后可以直接是commit id(如果你知道)也可以是--head HEAD+""HEAD表示当前版本
+HEAD^表示上一个版本，几个^就表示上几个版本
+9 使用git reflog可以显示你的每一次对文件的修改命令，内容包括commit id和所做的修改的命令
+log不显示回退或返回的修改(reflog 记录commit和reset的内容)
+10 工作区就是面对用户的那个文件夹，git add将工作区中的加入到暂存区git commit将暂存区的所有文件
+提交到master分区(目前可以理解为完全提交)
+11 使用git checkout -- "文件名"可以取消在工作区中对文件做的修改，使用git reset HEAD "文件名"
+可以取消暂存，既将保存在暂存区中的修改返回到工作区(git checkout其实就是用版本库里的替换工作区里的修改)
+#12建立远程仓库：
+a 创建SSH Key(一台电脑一个)，ssh-keygen -t rsa -C "your email"创建，.ssh目录下文件id_rsa.pub内容
+复制到Github中
+b 第一次提交内容根据github的提示来就可以，以后每次只要git push origin master就可以了(输入用户名和密码均为github的)
+13 使用分支可以完成某个任务可以大大提高其安全性，常用命令为:git branch(查看所有分支),
+git branch 文件名(创建分支),git checkout 分支名(切换分支),git checkout -b 分支名(创建加切换)
+git merge 分支(合并某分支到当前分支),git branch -d 分支名(删除分支)
+14 使用git merge --no-off -m "说明" 分支名,来关闭fast forward(快进)模式，方便管理分支，如果按默认
+的合并模式，那么master和测试分支的commit id就一样了，这样就不能看到相关的测试分支的信息
+15 有时需要停止当前的任务去执行另一项任务，但是当前任务未完成无法提交，此时需要存储当前的工作环境，
+使用git stash 命令可以将在工作区未存储的任务暂时存储起来，使用git stash list可以查看存储的位置，
+使用git stash pop恢复并删除还在stash中的任务
+如果不进行以上操作，未完成的任务会停留在工作区中，而工作区是所有分支共用的，这样必然造成混乱，
+安全性能太低。而使用stash后工作区中该任务的相关信息不会停留
+16 使用 git branch -D 分支名强行删除还未被合并的分支
+17 使用tag可以对commit进行标记，git tag -a tag名 -m "相关说明" commit id,进行创建tag
+git show 标记名 显示，git tag 显示全部标记,tag就是commit id的别称，所以git reset 后面也可以
+是tag
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
